@@ -151,8 +151,8 @@ a full structure-from-motion pipeline. To use our code with Bundler,
 #### V. How to independently use the binary for creating match-graph
 -------------------------------------------------------------------------------
 ##### For Quick Use
-`cd .../matching_v0.0.1/scripts/`
-`/RunMatchgraph [PATH_TO_IMAGE_DIR]`
+`cd .../matching_v0.0.1/scripts/`   
+`/RunMatchgraph [PATH_TO_IMAGE_DIR]`   
 
 ##### Detailed Guide
 You can also use our code independently to create a match-graph for a set of   
@@ -203,8 +203,8 @@ dims.init.txt --matches_file=matches.init.txt`
 #### VI. How to independently use the binary for pairwise matching
 -------------------------------------------------------------------------------
 ##### For Quick Use
-`cd .../scripts/`
-`./RunPairwise [PATH_TO_IMAGE1] [PATH_TO_IMAGE2]`
+`cd .../scripts/`  
+`./RunPairwise [PATH_TO_IMAGE1] [PATH_TO_IMAGE2]`  
 
 ##### Detailed Guide
 To simply match an image pair, please compile the binary for pairwise matching.   
@@ -213,7 +213,7 @@ images to be matched, in sorted order of scale in david lowe's ASCII format
 (plaintext or gzipped). If you are using lowe's binary for SIFT extraction, you   
 can use key_sorter.sh to sort and store these feature files as follows,   
 
-`./key_sorter.sh <key_file_name>`
+`./key_sorter.sh <key_file_name>`  
 
 The binary for pairwise matching takes the following options,
     -h, --help
@@ -252,8 +252,8 @@ line arguments in options-value format as shown here.
 -------------
 ##### Example usage
 -------------
-`match_pairs --option_file=desk.pairwise.opt`
-See `.../data/pairs/desk.pairwise.opt` for an example.
+`match_pairs --option_file=desk.pairwise.opt`  
+See `.../data/pairs/desk.pairwise.opt` for an example.  
 
 `match_pairs --source_image=../data/hampi/1.jpg --source_key=../data/hampi/1.
 key --source_dimension=3000x2250 --target_image=../data/hampi/2.jpg --target_key
