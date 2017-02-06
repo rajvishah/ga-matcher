@@ -31,12 +31,12 @@ for clarification.
 ===============================================================================
 ### **CAUTION** : Where is this matching expected to work?
 -------------------------------------------------------------------------------
-This matching code leverages epipolar geometry between two images for fast and 
-accurate feature matching. This makes its application suitable for SFM and 
-stereo vision. It will not produce matches if the geometry between the two 
-images cannot be captured by epipolar geometry (more precisely a fundamental 
-matrix), for example images of a planar scene, or captured by a camera rotating 
-around a fixed point (images related by a single Homography).
+This matching code leverages epipolar geometry between two images for fast and   
+accurate feature matching. This makes its application suitable for SFM and   
+stereo vision. It will not produce matches if the geometry between the two   
+images cannot be captured by epipolar geometry (more precisely a fundamental   
+matrix), for example images of a planar scene, or captured by a camera rotating   
+around a fixed point (images related by a single Homography).   
 
 ===============================================================================
 ### I. Source files in this package
@@ -76,11 +76,11 @@ opencv version 2.4 or higher installed, please ensure that pkg-config can find
 the correct paths to its lib and include files. Use the following commands to   
 test if the opencv include paths and libs are properly displayed.  
 
-`pkg-config --cflags opencv`
-`pkg-config --libs opencv`
+`pkg-config --cflags opencv`  
+`pkg-config --libs opencv`  
 
-For fresh installation of opencv, please follow,
-(Ubuntu)  https://help.ubuntu.com/community/OpenCV
+For fresh installation of opencv, please follow,  
+(Ubuntu)  https://help.ubuntu.com/community/OpenCV  
 (General) http://docs.opencv.org/trunk/doc/tutorials/introduction/linux_install/linux_install.html  
 
 #### ANN_1_1_CHAR
@@ -127,48 +127,46 @@ follow the step-by-step instructions given below to successfully compile it,
     Expand `"..."` to your system path to code directory.  
     Add this line to your bashrc file to avoid this step the next time.  
 
-3.  `cd .../matching_v0.0.1/src`  
+3.  `cd .../src`  
     `make`  
 
-    This creates two binaries in .../matching_v0.0.1/bin directory.  
-    For computing match-graph: 'bin/KeyMatchGeometryAware'  
-    For matching an image-pair: 'bin/match_pair'     
+    This creates two binaries in `.../bin` directory.    
+    For computing match-graph: `bin/KeyMatchGeometryAware`   
+    For matching an image-pair: `bin/match_pair`     
 
 ===============================================================================
-IV. How to use this code with Bundler?
+#### IV. How to use this code with Bundler?
 -------------------------------------------------------------------------------
-This package includes two scripts for using our matching code with Bundler for 
-a full structure-from-motion pipeline. To use our code with Bundler,
+This package includes two scripts for using our matching code with Bundler for  
+a full structure-from-motion pipeline. To use our code with Bundler,  
 
-1. After compiling our code, copy bin/KeyMatchGeometry to BUNDLER_BIN_PATH
-2. Copy scripts/key_sorter.sh, scripts/ToSiftSorted.sh to BUNDLER_BIN_PATH
-3. In RunBundler.sh and change the BASE_PATH to your bundler installation path.
-4.  > mkdir reconstruction
-5.  > cd reconstruction
-6.  > $.../matching_v0.0.1/scripts/RunBundler.sh <PathToImages>
+1. After compiling our code, copy `bin/KeyMatchGeometry` to `$BUNDLER_BIN_PATH`
+2. Copy `scripts/key_sorter.sh`, `scripts/ToSiftSorted.sh` to `$BUNDLER_BIN_PATH`
+3. In `RunBundler.sh` and change the `$BASE_PATH` to your bundler installation path.
+4. `mkdir reconstruction`
+5. `cd reconstruction`
+6. `.../scripts/RunBundler.sh <PathToImages>`
 
 ===============================================================================
-V. How to independently use the binary for creating match-graph
+#### V. How to independently use the binary for creating match-graph
 -------------------------------------------------------------------------------
-For Quick Use
--------------
-> cd .../matching_v0.0.1/scripts/
-> ./RunMatchgraph [PATH_TO_IMAGE_DIR]
+##### For Quick Use
+`cd .../matching_v0.0.1/scripts/`
+`/RunMatchgraph [PATH_TO_IMAGE_DIR]`
 
-Detailed Guide
---------------
-You can also use our code independently to create a match-graph for a set of 
-images. You can extract SIFT/SIFT-like features for the images to be matched, 
-and write these features in sorted order of scale in david lowe's ASCII format 
-(plaintext or gzipped). If you are using lowe's binary for SIFT extraction, you 
-can use key_sorter.sh to sort and store these feature files as follows,
+##### Detailed Guide
+You can also use our code independently to create a match-graph for a set of   
+images. You can extract SIFT/SIFT-like features for the images to be matched,   
+and write these features in sorted order of scale in david lowe's ASCII format   
+(plaintext or gzipped). If you are using lowe's binary for SIFT extraction, you   
+can use key_sorter.sh to sort and store these feature files as follows,   
 
-> ./key_sorter.sh <key_file_name>
+`./key_sorter.sh <key_file_name>`
 
-This script shuffles the keys in the original file in descending order of scale. 
-Our code can be used to create a match-graph from these extracted features.
+This script shuffles the keys in the original file in descending order of scale.    
+Our code can be used to create a match-graph from these extracted features.   
 
-The binary for match-graph creation takes the following options,
+The binary for match-graph creation takes the following options,   
   -h, --help
   Prints usage of options and expected values.
 
@@ -195,30 +193,27 @@ The binary for match-graph creation takes the following options,
 These options can be specified in an options file or as a series of command line 
 arguments in options-value format as shown below.
 
--------------
-Example Usage 
--------------
-> KeyMatchGeometryAware --option_file=matchgraph.options.txt
-> KeyMatchGeometryAware --keyfile_list=list_keys.txt --image_dimension_list=
-dims.init.txt --matches_file=matches.init.txt 
+##### Example Usage 
+
+`KeyMatchGeometryAware --option_file=matchgraph.options.txt`  
+`KeyMatchGeometryAware --keyfile_list=list_keys.txt --image_dimension_list=
+dims.init.txt --matches_file=matches.init.txt`   
 
 ===============================================================================
-VI. How to independently use the binary for pairwise matching
+#### VI. How to independently use the binary for pairwise matching
 -------------------------------------------------------------------------------
-For Quick Use
--------------
-> cd .../matching_v0.0.1/scripts/
-> ./RunPairwise [PATH_TO_IMAGE1] [PATH_TO_IMAGE2]
+##### For Quick Use
+`cd .../scripts/`
+`./RunPairwise [PATH_TO_IMAGE1] [PATH_TO_IMAGE2]`
 
-Detailed Guide
---------------
-To simply match an image pair, please compile the binary for pairwise matching.
-As explained before, you need to extract/store SIFT/SIFT-like features for the 
-images to be matched, in sorted order of scale in david lowe's ASCII format 
-(plaintext or gzipped). If you are using lowe's binary for SIFT extraction, you 
-can use key_sorter.sh to sort and store these feature files as follows,
+##### Detailed Guide
+To simply match an image pair, please compile the binary for pairwise matching.   
+As explained before, you need to extract/store SIFT/SIFT-like features for the    
+images to be matched, in sorted order of scale in david lowe's ASCII format   
+(plaintext or gzipped). If you are using lowe's binary for SIFT extraction, you   
+can use key_sorter.sh to sort and store these feature files as follows,   
 
-> ./key_sorter.sh <key_file_name>
+`./key_sorter.sh <key_file_name>`
 
 The binary for pairwise matching takes the following options,
     -h, --help
@@ -255,20 +250,20 @@ These options can be specified in an options file or as a series of command
 line arguments in options-value format as shown here.
 
 -------------
-Example usage
+##### Example usage
 -------------
-> match_pairs --option_file=desk.pairwise.opt
-See .../matching_v0.0.1/data/pairs/desk.pairwise.opt for an example.
+`match_pairs --option_file=desk.pairwise.opt`
+See `.../data/pairs/desk.pairwise.opt` for an example.
 
-> match_pairs --source_image=../data/hampi/1.jpg --source_key=../data/hampi/1.
+`match_pairs --source_image=../data/hampi/1.jpg --source_key=../data/hampi/1.
 key --source_dimension=3000x2250 --target_image=../data/hampi/2.jpg --target_key
 =../data/hampi/2.key  --target_dimension=3000x2250 --visualize 
---save_visualization --result_path=../results/pairwise/hampi/
+--save_visualization --result_path=../results/pairwise/hampi/`
 
 ===============================================================================
-For Questions/Suggestions/Help contact us
+#### For Questions/Suggestions/Help contact us
 -------------------------------------------------------------------------------
 
-Rajvi Shah (rajvi.a.shah@gmail.com)
-Vanshika Srivastava (vanshika.srivastava.iiith@gmail.com)
-P J Narayanan (pjn@iiit.ac.in)
+Rajvi Shah (rajvi.a.shah@gmail.com)   
+Vanshika Srivastava (vanshika.srivastava.iiith@gmail.com)   
+P J Narayanan (pjn@iiit.ac.in)   
