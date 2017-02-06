@@ -1,0 +1,7 @@
+--source_image=../data/pairs/desk/IMG_20140920_051254.jpg
+--source_key=../data/pairs/desk/IMG_20140920_051254.key
+--source_dimension=3264x2448
+--target_image=../data/pairs/desk/IMG_20140920_051249.jpg
+--target_key=../data/pairs/desk/IMG_20140920_051249.key
+--target_dimension=3264x2448
+--result_path=../results/

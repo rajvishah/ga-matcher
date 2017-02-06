@@ -1,0 +1,4 @@
+0.0.0 - Original Release
+0.0.1 - Fixed a bug in RunMatchgraph.sh script
+0.0.2 - Fixed a bug in Matcher.cpp - getProbableMatches(..)
+        Deals with the case of very few candidates in the set.

@@ -1,0 +1,7 @@
+--source_image=../data/pairs/monument/alex1961_2471586349.jpg
+--source_key=../data/pairs/monument/alex1961_2471586349.key
+--source_dimension=3000x2250
+--target_image=../data/pairs/monument/alex1961_2465542557.jpg
+--target_key=../data/pairs/monument/alex1961_2465542557.key
+--target_dimension=3000x2250
+--result_path=../results/
