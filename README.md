@@ -264,9 +264,8 @@ key --source_dimension=3000x2250 --target_image=../data/hampi/2.jpg --target_key
 --save_visualization --result_path=../results/pairwise/hampi/`
 
 ===============================================================================
-#### For Questions/Suggestions/Help contact us
+#### For Questions/Suggestions/Help contact
 -------------------------------------------------------------------------------
 
 Rajvi Shah (rajvi.a.shah@gmail.com)   
-Vanshika Srivastava (vanshika.srivastava.iiith@gmail.com)   
-P J Narayanan (pjn@iiit.ac.in)   
+
