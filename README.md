@@ -120,8 +120,8 @@ follow the step-by-step instructions given below to successfully compile it,
 
 1.  Make sure, OpenCV is correctly installed as explained above.  
 
-2.  Verify that the zlib and ann_1_1_char libraries and include files exist at  
-    the path specified in the Makefile (src/Makefile).  
+2.  Verify that the `zlib` and `ann_1_1_char` libraries and include files exist at  
+    the path specified in the `Makefile` (`src/Makefile`).  
 
 3.  `export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.../lib/ann_1.1_char/lib/`  
     Expand `"..."` to your system path to code directory.  
@@ -142,7 +142,7 @@ a full structure-from-motion pipeline. To use our code with Bundler,
 
 1. After compiling our code, copy `bin/KeyMatchGeometry` to `$BUNDLER_BIN_PATH`
 2. Copy `scripts/key_sorter.sh`, `scripts/ToSiftSorted.sh` to `$BUNDLER_BIN_PATH`
-3. In `RunBundler.sh` and change the `$BASE_PATH` to your bundler installation path.
+3. In `RunBundler.sh` and change the `$BASE_PATH` to your `bundler` installation path.
 4. `mkdir reconstruction`
 5. `cd reconstruction`
 6. `.../scripts/RunBundler.sh <PathToImages>`
@@ -166,29 +166,31 @@ can use key_sorter.sh to sort and store these feature files as follows,
 This script shuffles the keys in the original file in descending order of scale.    
 Our code can be used to create a match-graph from these extracted features.   
 
-The binary for match-graph creation takes the following options,   
-  -h, --help
-  Prints usage of options and expected values.
+The binary for match-graph creation takes the following options,    
+```
+  --help, -h  
+  Prints usage of options and expected values.  
 
   --keyfile_list [required]
-  Path to a list of key files (full paths) in LOWE'sformat (ASCII or gzipped)
+  Path to a list of key files (full paths) in LOWE'sformat (ASCII or gzipped)  
 
   --image_dimension_list [required]
-  Filename with path, file stores <Height Width> per image per line in same
-  order as the keyfiles
+  Filename with path, file stores <Height Width> per image per line in same  
+  order as the keyfiles  
 
-  This can be created quickly using the image magick command 'identify',
-  > identify $IMAGE_DIR/*.jpg | cut -d' ' -f3 | sed 's/x/ /g'> dims.init.txt
+  This can be created quickly using the image magick command 'identify',  
+  > identify $IMAGE_DIR/*.jpg | cut -d' ' -f3 | sed 's/x/ /g'> dims.init.txt  
 
   --matches_file [required]
-  Output filename with path, file stores key matches in format <im1 im2\n
-  num_matches\n keyIdx1 keyIdx2\n...> 
+  Output filename with path, file stores key matches in format <im1 im2\n  
+  num_matches\n keyIdx1 keyIdx2\n...>   
 
   --topscale_percent
-  Percentage of top scale features to use for initial matching, [Default: 20]
+  Percentage of top scale features to use for initial matching, [Default: 20]  
 
   --twoway_global_match
-  Use two-way matching for top-scalefeatures (stricter, slow), [Default: False]
+  Use two-way matching for top-scalefeatures (stricter, slow), [Default: False]  
+```
 
 These options can be specified in an options file or as a series of command line 
 arguments in options-value format as shown below.
@@ -216,6 +218,7 @@ can use key_sorter.sh to sort and store these feature files as follows,
 `./key_sorter.sh <key_file_name>`  
 
 The binary for pairwise matching takes the following options,
+
     -h, --help
     Prints usage of options and expected values.
 
