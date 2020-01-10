@@ -19,10 +19,10 @@ pairwise: match_pairs
 	mv match_pairs ../bin/match_pairs
 
 match_graph: match_graph.o keys2a.o Geometric.o Matcher.o Gridder.o argvparser.o
-	$(CC) $(IFLAGS) match_graph.o keys2a.o Geometric.o Matcher.o Gridder.o argvparser.o $(LIBPATH) $(PKGCONFIGFLAG)-Wall -o match_graph $(LIBS)
+	$(CC) $(IFLAGS) match_graph.o keys2a.o Geometric.o Matcher.o Gridder.o argvparser.o $(LIBPATH) $(PKGCONFIGFLAG) -Wall -o match_graph $(LIBS)
 
 match_pairs: match_image_pair.o keys2a.o Geometric.o Matcher.o Gridder.o argvparser.o
-	$(CC) $(IFLAGS) match_image_pair.o keys2a.o Geometric.o Matcher.o Gridder.o argvparser.o $(LIBPATH) $(PKGCONFIGFLAG)-Wall -o match_pairs $(LIBS)
+	$(CC) $(IFLAGS) match_image_pair.o keys2a.o Geometric.o Matcher.o Gridder.o argvparser.o $(LIBPATH) $(PKGCONFIGFLAG) -Wall -o match_pairs $(LIBS)
 
 match_image_pair.o: match_image_pair.cpp Gridder.cpp Gridder.h  defs.h Geometric.cpp Geometric.h Matcher.cpp Matcher.h argvparser.cpp argvparser.h 
 	$(CC) $(CFLAGS) $(IFLAGS) match_image_pair.cpp
